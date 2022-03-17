@@ -65,4 +65,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     //Swipe to refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    //Google Truth for unit testing
+    testImplementation "com.google.truth:truth:1.1.2"
+    androidTestImplementation "com.google.truth:truth:1.1.2"
 }

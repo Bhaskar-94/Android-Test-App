@@ -1,4 +1,4 @@
-package com.example.wiprotestapplication.ui
+package com.example.wiprotestapplication.ui.dashboard_screen
 
 /**
  * MainModel is a data class to store data

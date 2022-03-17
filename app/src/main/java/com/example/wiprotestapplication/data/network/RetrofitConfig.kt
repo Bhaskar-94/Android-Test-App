@@ -1,10 +1,10 @@
 package com.example.wiprotestapplication.data.network
 
-import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * RetrofitConfig class helps to create retrofit object
@@ -12,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class RetrofitConfig {
     companion object {
-
         /**
          * Return a retrofit object
          */

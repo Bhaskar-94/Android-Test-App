@@ -1,4 +1,4 @@
-package com.example.wiprotestapplication.ui
+package com.example.wiprotestapplication.ui.dashboard_screen
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,13 +10,13 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.wiprotestapplication.R
 import com.example.wiprotestapplication.databinding.RowCountryInfoBinding
-import com.example.wiprotestapplication.ui.MainAdapter.ViewHolder
+import com.example.wiprotestapplication.ui.dashboard_screen.DashboardAdapter.ViewHolder
 
 /**
  * MainAdapter class extends RecyclerView adapter class
  *
  */
-class MainAdapter(
+class DashboardAdapter(
     private val context: Context,
     private val countryInfoList: ArrayList<CountryInfo>
 ) :

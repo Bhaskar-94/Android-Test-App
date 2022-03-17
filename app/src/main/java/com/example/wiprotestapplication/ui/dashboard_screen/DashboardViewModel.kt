@@ -1,4 +1,4 @@
-package com.example.wiprotestapplication.ui
+package com.example.wiprotestapplication.ui.dashboard_screen
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,17 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wiprotestapplication.data.repositories.MainRepository
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
-import org.json.JSONObject
 
 /**
  * MainViewModel class is a child class of ViewModel class
  * It is tied with the lifecycle of It's view
  */
-class MainViewModel(private val repository: MainRepository) : ViewModel() {
+class DashboardViewModel(private val repository: MainRepository) : ViewModel() {
 
     private val _progressStatus: MutableLiveData<Boolean> = MutableLiveData()
     val progressStatusData: LiveData<Boolean>
@@ -39,11 +36,7 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _progressStatus.postValue(true)
-                val responseBody: ResponseBody = repository.getListItems()
-                val jsonObject = JSONObject(responseBody.string())
-                val mainModel: MainModel =
-                    GsonBuilder().serializeNulls().create()
-                        .fromJson(jsonObject.toString(), MainModel::class.java)
+                val mainModel: MainModel = repository.getListItems()
                 Log.e("MainView Model", "-----jsonObject---: ${mainModel.rows.size}")
                 _progressStatus.postValue(false)
                 _itemsList.postValue(mainModel)

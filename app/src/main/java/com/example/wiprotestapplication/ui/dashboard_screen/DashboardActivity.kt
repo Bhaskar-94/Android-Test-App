@@ -1,4 +1,4 @@
-package com.example.wiprotestapplication.ui
+package com.example.wiprotestapplication.ui.dashboard_screen
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,16 +11,17 @@ import com.example.wiprotestapplication.data.network.RetrofitConfig
 import com.example.wiprotestapplication.data.network.RetrofitService
 import com.example.wiprotestapplication.data.repositories.MainRepository
 import com.example.wiprotestapplication.databinding.ActivityMainBinding
+import com.example.wiprotestapplication.utlis.Validator
 
 /**
  * MainActivity class is the launching view
  *
  */
-class MainActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: DashboardViewModel
     private var countryInfoList = ArrayList<CountryInfo>()
-    private lateinit var adapter: MainAdapter
+    private lateinit var adapter: DashboardAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +44,12 @@ class MainActivity : AppCompatActivity() {
         val retrofitService: RetrofitService =
             RetrofitConfig.buildService(RetrofitService::class.java)
         val repository = MainRepository(retrofitService)
-        val factory = MainViewModelProvider(repository)
-        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
+        val factory = DashboardViewModelProvider(repository)
+        viewModel = ViewModelProvider(this, factory)[DashboardViewModel::class.java]
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvItemList.layoutManager = layoutManager
-        adapter = MainAdapter(this, countryInfoList)
+        adapter = DashboardAdapter(this, countryInfoList)
         binding.rvItemList.adapter = adapter
 
         binding.swipeToRefresh.setProgressBackgroundColorSchemeColor(
@@ -91,8 +92,11 @@ class MainActivity : AppCompatActivity() {
      * remove all null object from list
      */
     private fun modifyList(rows: List<CountryInfo>): List<CountryInfo> {
-        return rows.filter { countryInfo ->
-            (countryInfo.title.isNullOrEmpty()).not()
+        if (Validator.validateList(rows)) {
+            return rows.filter { countryInfo ->
+                (countryInfo.title.isNullOrEmpty()).not()
+            }
         }
+        return listOf<CountryInfo>()
     }
 }

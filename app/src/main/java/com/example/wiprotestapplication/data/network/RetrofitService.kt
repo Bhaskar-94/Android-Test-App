@@ -1,6 +1,6 @@
 package com.example.wiprotestapplication.data.network
 
-import okhttp3.ResponseBody
+import com.example.wiprotestapplication.ui.dashboard_screen.MainModel
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -10,5 +10,5 @@ import retrofit2.http.GET
  */
 interface RetrofitService {
     @GET(ApiConstants.FACTS)
-    suspend fun getItemsList(): Response<ResponseBody>
+    suspend fun getItemsList(): Response<MainModel>
 }

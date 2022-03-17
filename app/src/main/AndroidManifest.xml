@@ -16,7 +16,7 @@
         android:theme="@style/Theme.WiproTestApplication"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.dashboard_screen.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
