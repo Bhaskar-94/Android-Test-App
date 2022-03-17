@@ -37,7 +37,6 @@ class DashboardViewModel(private val repository: MainRepository) : ViewModel() {
             try {
                 _progressStatus.postValue(true)
                 val mainModel: MainModel = repository.getListItems()
-                Log.e("MainView Model", "-----jsonObject---: ${mainModel.rows.size}")
                 _progressStatus.postValue(false)
                 _itemsList.postValue(mainModel)
             } catch (t: Throwable) {

@@ -3,7 +3,7 @@ package com.example.wiprotestapplication.utlis
 object Validator {
 
     /**
-     * remove all null object from list
+     * check the input is null or not
      */
     fun validateList(rows: List<Any>): Boolean {
         return rows.isNotEmpty()
